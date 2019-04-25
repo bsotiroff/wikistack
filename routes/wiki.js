@@ -15,6 +15,10 @@ router.get('/add', (req, res, next) => {
   res.send(addPage());
 });
 
+router.get('/:slug', (req, res, next) => {
+  res.send(`hit dynamic route at ${req.params.slug}`);
+});
+
 router.post('/', async (req, res, next) => {
   const page = new Page({
     title: req.body.title,

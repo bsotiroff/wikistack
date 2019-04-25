@@ -5,31 +5,17 @@ const app = express();
 const models = require('./models');
 const wikiRouter = require('./routes/wiki');
 const userRouter = require('./routes/user');
-const {addPage} = require('./views');
-const router = express.Router();
+
+
 
 app.use('/wiki', wikiRouter);
-app.use('/user', userRouter);
+//app.use('/user', userRouter);
 
-router.use('/user', userRouter);
-router.use('/wiki', wikiRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello world!');
  });
  
-
- router.get('/', (req, res, next) => {
-     res.send('go to GET /wiki/');
- });
-
- router.post('/', (req, res, next) => {
-    res.send('go to POST /wiki/');
- });
-
- router.get('/add', (req, res, next) =>{
-     res.send(addPage());
- });
 
 
  models.db.authenticate().
@@ -52,4 +38,3 @@ const init = async () => {
 
 init();
 
-module.exports = router;
